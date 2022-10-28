@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es2021",
+        "moduleResolution": "node",
+        "noImplicitAny": true,
+        "esModuleInterop": true,
+        "allowJs": true,
+        "outDir": "./dist",
+        "declaration": true
+    },
+    "include": [
+        "src/**/*.ts"
+    ],
+}
