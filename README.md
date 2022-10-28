@@ -1,48 +1,52 @@
-# @kazhord/archetype-node-typescript
-Typescript archetype for your npm packages.
+# @kazhord/node-pdf-processor
+Generate PDF using HTML template and Chrome renderer.
+
+
+## Installation
+```sh
+$ npm install @kazhord/node-pdf-processor
+```
 
 ## Features
-- Use Typescript
-- ESLint/Prettier
-- Write unit tests using jest
-- Code coverage
-- Comments to documentation with typedoc
-- Publish documentation to Github pages
+- Generate PDF from HTML template
+- Beautiful report with CSS
+- Inject dynamic content
 
-## Scripts
-
-### Build your project
-```
-npm run build
+## API
+```js
+import { PdfProcessor } from '@kazhord/node-pdf-processor'
+[...]
+const processor = new PdfProcessor()
 ```
 
-### Run tests
-```
-npm run test
+### Process PDF
+```js
+const buffer = await processor.process(
+            `<!DOCTYPE html>
+            <html>
+              <head>
+                <meta charset="utf-8" />
+              </head>
+              <body>
+                <h1>Test #{{ testNumber }}</h1>
+              </body>
+            </html>`,
+            {
+                testNumber: 12345,
+            },
+            `body {
+                background-color: red;
+                color: yellow;
+            }
+            `
+        )
+/*
+<PDF buffer>
+*/
 ```
 
-### Generate coverage
-```
-npm run coverage
-```
-
-### Lint project
-```
-npm run lint
-```
-
-### Format project
-```
-npm run format
-```
-
-### Generate doc
-```
-npm run doc
-```
-
-### Publish doc to Github pages
-```
-npm run publish-doc
+### Close processor
+```js
+await processor.stop()
 ```
 
