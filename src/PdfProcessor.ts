@@ -1,11 +1,11 @@
 import Mustache from 'mustache'
-import puppeteer from 'puppeteer'
+import puppeteer, { Browser } from 'puppeteer'
 
 export class PdfProcessor {
-    private browser: puppeteer.Browser
+    private browser: Browser
 
     private async initialize(): Promise<void> {
-        this.browser = await puppeteer.launch()
+        this.browser = await puppeteer.launch({ headless: 'new' })
     }
 
     public async process(template: string, data = {}, styleContent?: string): Promise<Buffer> {
